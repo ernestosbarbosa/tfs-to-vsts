@@ -1,0 +1,36 @@
+<app-loader *ngIf="loading"></app-loader>
+
+<h2>Migração de Planos de Teste do TFS para o VSTS</h2>
+<mat-horizontal-stepper [linear]="true" #stepper>
+    <mat-step label="Servidores" [stepControl]="serversFormGroup">
+        <app-servers></app-servers>
+        <mat-divider class="divider"></mat-divider>
+        <button mat-button (click)="loadProjects(stepper)">Prosseguir</button>
+    </mat-step>
+    <mat-step label="Projeto" [stepControl]="projectsFormGroup">
+        <app-projects></app-projects>
+        <mat-divider class="divider"></mat-divider>
+        <button mat-button (click)="loadPlans(stepper)">Prosseguir</button>
+    </mat-step>
+    <mat-step label="Planos de Teste">
+        <app-plans></app-plans>
+        <mat-divider class="divider"></mat-divider>
+        <button mat-button (click)="loadSuites(stepper)">Prosseguir</button>
+    </mat-step>
+    <mat-step label="Suites">
+        <app-suites></app-suites>
+        <mat-divider class="divider"></mat-divider>
+        <button mat-button (click)="loadTests(stepper)">Prosseguir</button>
+    </mat-step>
+    <mat-step label="Casos de Teste">
+        <app-tests></app-tests>
+        <mat-divider class="divider"></mat-divider>
+        <button mat-button (click)="resumo(stepper)">Prosseguir</button>
+    </mat-step>
+    <mat-step label="Resumo">
+        <app-resume [tfsVstsProjects]="tfsVstsProjects" [tfsVstsServers]="tfsVstsServers" [tfsVstsPlans]="tfsVstsPlans"
+            [tfsVstsSuites]="tfsVstsSuites" [tfsVstsTests]="tfsVstsTests"></app-resume>
+        <mat-divider class="divider"></mat-divider>
+        <button mat-button [disabled]="importDisabled" (click)="import(stepper)">Importar</button>
+    </mat-step>
+</mat-horizontal-stepper>

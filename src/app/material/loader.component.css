@@ -1,0 +1,14 @@
+#carregando{
+  z-index: 1000;
+  margin: 0 auto;
+  position: fixed;
+  top: -15%; left: 0; bottom: -15%; right: 0;
+  overflow: hidden;
+  background-color: black;
+  opacity: 0.5;
+}
+#carregando mat-spinner{
+  top: 40%;
+  margin: 0 auto;
+  position: relative;
+}

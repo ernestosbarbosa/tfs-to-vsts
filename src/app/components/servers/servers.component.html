@@ -1,0 +1,24 @@
+<form [formGroup]="serversFormGroup">
+    <mat-form-field class="input-flex">
+        <input matInput placeholder="Servidor Origem (TFS)" formControlName="urlOrigem" required>
+    </mat-form-field>
+    <mat-form-field class="input-flex">
+        <input matInput placeholder="Usuário" formControlName="usuarioOrigem" required>
+    </mat-form-field>
+    <mat-form-field class="input-flex">
+        <input matInput type="password" placeholder="Senha" formControlName="senhaOrigem" required>
+    </mat-form-field>
+    <mat-form-field class="input-flex">
+        <input matInput placeholder="Domínio" formControlName="dominioOrigem" required>
+    </mat-form-field>
+    <mat-form-field class="input-flex">
+        <input matInput placeholder="Workstation" formControlName="workstationOrigem" required>
+    </mat-form-field>
+    <mat-divider class="divider"></mat-divider>
+    <mat-form-field class="input-flex">
+        <input matInput placeholder="Servidor Destino (VSTS)" formControlName="urlDestino" required>
+    </mat-form-field>
+    <mat-form-field class="input-flex">
+        <input matInput placeholder="Token de Acesso" formControlName="tokenDestino" required>
+    </mat-form-field>
+</form>

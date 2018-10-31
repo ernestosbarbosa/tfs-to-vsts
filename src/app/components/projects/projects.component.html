@@ -1,0 +1,11 @@
+<form [formGroup]="projectsFormGroup" [hidden]="!projects">
+  <mat-radio-group class="radio-group" formControlName="projetoOrigem">
+      <label>Projeto Origem:</label>
+      <mat-radio-button class="radio-button" *ngFor="let p of projects" value="{{p.name}}">{{p.name}}</mat-radio-button>
+  </mat-radio-group>
+  <mat-divider class="divider"></mat-divider>
+  <mat-radio-group class="radio-group" formControlName="projetoDestino">
+      <label>Projeto Destino:</label>
+      <mat-radio-button class="radio-button" *ngFor="let p of projectsDest" value="{{p.name}}">{{p.name}}</mat-radio-button>
+  </mat-radio-group>
+</form>

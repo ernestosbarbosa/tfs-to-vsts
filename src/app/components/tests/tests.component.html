@@ -1,0 +1,44 @@
+<mat-form-field class="input-flex">
+    <input matInput (keyup)="applyFilterTests($event.target.value)" placeholder="Filter">
+</mat-form-field>
+
+<mat-table [dataSource]="testsDataSource" matSort>
+    <ng-container matColumnDef="select">
+        <mat-header-cell *matHeaderCellDef>
+            <mat-checkbox (change)="$event ? masterToggleTests() : null" [checked]="testsSelection.hasValue() && isAllSelectedTests()"
+                [indeterminate]="testsSelection.hasValue() && !isAllSelectedTests()" [disabled]="isTestsHeaderDisabled()">
+            </mat-checkbox>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+            <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? testsSelection.toggle(row) : null"
+                [checked]="testsSelection.isSelected(row)" [disabled]="row.disabled">
+            </mat-checkbox>
+        </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.testCase.id}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Caso de Teste </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.wit.fields["System.Title"]}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="suite">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Suite </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.suite.fields["System.Title"]}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="plan">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Plano </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.plan.fields["System.Title"]}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="state">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.wit.fields["System.State"]}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="testsDisplayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: testsDisplayedColumns;"></mat-row>
+</mat-table>
+
+<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+

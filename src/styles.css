@@ -1,0 +1,16 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+.input-flex {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.mat-divider {
+    padding: 5px;
+}
+
+button, app-server, app-projects, app-plans, app-suites, app-tests, app-resumo {
+    width: 100%;
+}

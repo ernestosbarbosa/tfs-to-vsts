@@ -1,0 +1,47 @@
+<label>Planos de Testes a importar:</label>
+<mat-form-field class="input-flex">
+    <input matInput (keyup)="applyFilterPlans($event.target.value)" placeholder="Filter">
+</mat-form-field>
+
+<mat-table [dataSource]="plansDataSource" matSort>
+    <ng-container matColumnDef="select">
+        <mat-header-cell *matHeaderCellDef>
+            <mat-checkbox (change)="$event ? masterTogglePlans() : null" [checked]="plansSelection.hasValue() && isAllSelectedPlans()"
+                [indeterminate]="plansSelection.hasValue() && !isAllSelectedPlans()" [disabled]="isPlansHeaderDisabled()">
+            </mat-checkbox>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+            <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? plansSelection.toggle(row) : null"
+                [checked]="plansSelection.isSelected(row)" [disabled]="row.disabled">
+            </mat-checkbox>
+        </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Plano </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="iteration">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Iteração </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.iteration}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="state">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.state}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="plansDisplayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: plansDisplayedColumns;"></mat-row>
+</mat-table>
+
+<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+
+<form [formGroup]="plansFormGroup" [hidden]="!plansDest">
+    <mat-radio-group class="radio-group" formControlName="planoDestino">
+        <label>Plano de Testes Destino:</label>
+        <mat-radio-button class="radio-button" *ngFor="let p of plansDest" value="{{p.id}}">{{p.name}}</mat-radio-button>
+    </mat-radio-group>
+</form>
