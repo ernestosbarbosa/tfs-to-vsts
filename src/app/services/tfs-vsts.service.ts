@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import 'rxjs-compat/add/operator/retry';
 
 @Injectable({
   providedIn: 'root'
@@ -47,7 +48,7 @@ export class TfsVstsService {
       planId: planId,
       suiteId: suiteId,
       type: type
-    });
+    }).retry(100);
   }
 
   getWorkItemById(baseUrl: string, credentials: any, witId: number, type: string) {
