@@ -24,7 +24,7 @@
     "@angular/router": "^6.1.0",
     "azure-devops-node-api": "file:../azure-devops-node-api/_build",
     "core-js": "^2.5.4",
-    "rxjs": "^6.0.0",
+    "rxjs": "6.3.3",
     "rxjs-compat": "^6.3.3",
     "typed-rest-client": "^1.0.9",
     "underscore": "^1.9.1",
